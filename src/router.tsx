@@ -1,4 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AuthLayout from "./layouts/authLayout";
+import AppLayout from "./layouts/appLayout";
+
 import Login from "./pages/Login";
 import Products from "./pages/Products";
 import ProductForm from "./pages/ProductForm";
@@ -7,10 +10,23 @@ export default function Router() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Login />} />
+
+                {/* Auth layout */}
+                <Route element={<AuthLayout />}>
+                    <Route path="/" element={<Login />} />
+                </Route>
+
+                {/* Admin layout */}
+                <Route element={<AppLayout />}>
+                    <Route path="/products" element={<Products />} />
+                    <Route path="/products/create" element={<ProductForm />} />
+                    <Route path="/products/edit/:id" element={<ProductForm />} />
+                </Route>
+
+                {/* <Route path="/" element={<Login />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/products/create" element={<ProductForm />} />
-                <Route path="/products/edit/:id" element={<ProductForm />} />
+                <Route path="/products/edit/:id" element={<ProductForm />} /> */}
             </Routes>
         </BrowserRouter>
     );

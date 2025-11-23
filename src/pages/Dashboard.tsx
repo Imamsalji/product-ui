@@ -1,23 +1,15 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import type { Product } from "../types/Product";
-import { Link } from "react-router-dom";
 
 export default function Products() {
     const [products, setProducts] = useState<Product[]>([]);
 
     const fetchProducts = async () => {
-        console.log('data ini');
-        const res = await api.get("/product");
+        const res = await api.get("/getData");
         setProducts(res.data.data);
         console.log(products);
 
-    };
-
-    const deleteProduct = async (id: number) => {
-        if (!confirm("Yakin hapus?")) return;
-        await api.delete(`/product/${id}`);
-        fetchProducts();
     };
 
     useEffect(() => {
@@ -29,8 +21,7 @@ export default function Products() {
             <div className="card">
                 <div className="card-body px-0">
                     <div style={{ padding: 20 }}>
-                        <h2>Produk List</h2>
-                        <Link className="btn btn-success mb-2" to="/products/create">+ Add Product</Link>
+                        <h2>Dashboard</h2>
                         <div className="table-responsive">
                             <table className="table" >
                                 <thead className="tw-sticky tw-top-0">
@@ -39,7 +30,6 @@ export default function Products() {
                                         <th>SKU</th>
                                         <th>Qty</th>
                                         <th>Price</th>
-                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,10 +39,7 @@ export default function Products() {
                                             <td>{p.sku}</td>
                                             <td>{p.quantity}</td>
                                             <td>Rp {p.price.toLocaleString()}</td>
-                                            <td>
-                                                <Link className="btn btn-warning mr-2" to={`/products/edit/${p.id}`}><i className="fas fa-edit"></i></Link> {" "}
-                                                <button className="btn btn-danger" onClick={() => deleteProduct(p.id!)}><i className="fas fa-trash"></i></button>
-                                            </td>
+
                                         </tr>
                                     ))}
                                 </tbody>
@@ -61,6 +48,6 @@ export default function Products() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }

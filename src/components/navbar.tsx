@@ -1,11 +1,21 @@
 
 import { Link } from "react-router-dom";
+import api from "../api/axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
+    const navigate = useNavigate();
+    const logout = async () => {
+        if (!confirm("Yakin mau keluar?")) return;
+        await api.post(`/logout`);
+        localStorage.setItem("token", '');
+        navigate("/");
+
+    };
     return (
         <nav className="navbar navbar-expand-lg main-navbar">
             <Link to="/" className="navbar-brand sidebar-gone-hide">
-                REACT VITE
+                Produk
             </Link>
             <div className="navbar-nav">
                 <a
@@ -33,12 +43,13 @@ export default function Navbar() {
                             Logged in 5 min ago
                         </div>
                         <div className="dropdown-divider"></div>
-                        <a
+                        <button className="dropdown-item has-icon text-danger" onClick={() => logout()}><i className="fas fa-sign-out-alt"></i> Logout</button>
+                        {/* <a
                             href="#"
                             className="dropdown-item has-icon text-danger"
                         >
                             <i className="fas fa-sign-out-alt"></i> Logout
-                        </a>
+                        </a> */}
                     </div>
                 </li>
             </ul>

@@ -56,7 +56,6 @@ export default function ProductForm() {
 
         setErrors(newErrors);
 
-        // Jika tidak ada error → true
         return Object.keys(newErrors).length === 0;
     };
 

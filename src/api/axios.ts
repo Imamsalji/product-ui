@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:8000/api", // GANTI dengan API kamu
+    baseURL: "http://localhost:8000/api",
 });
 
 // ambil token dari localStorage

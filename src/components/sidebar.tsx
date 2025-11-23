@@ -1,15 +1,33 @@
-import { Link } from "react-router-dom";
-// import "./Sidebar.css";
+import React from "react";
+import { useLocation } from "react-router-dom";
+import NavLink from "./NavLink";
 
-const Sidebar = () => {
+export default function Sidebar() {
+    const location = useLocation();
     return (
-        <div className="sidebar">
-            <ul>
-                <li><Link to="/">Dashboard</Link></li>
-                <li><Link to="/products">Products</Link></li>
-            </ul>
-        </div>
+        <nav className="navbar navbar-secondary navbar-expand-lg">
+            <div className="container">
+                <ul className="navbar-nav">
+                    <li
+                        className={`nav-item ${location.pathname === "/dashboard" ? "active" : ""
+                            }`}
+                    >
+                        <NavLink href="/dashboard">
+                            <i className="far fa-home"></i>
+                            <span>Dashboard</span>
+                        </NavLink>
+                    </li>
+                    <li
+                        className={`nav-item ${location.pathname === "/products" ? "active" : ""
+                            }`}
+                    >
+                        <NavLink href="/products">
+                            <i className="far fa-fire"></i>
+                            <span>product</span>
+                        </NavLink>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     );
-};
-
-export default Sidebar;
+}

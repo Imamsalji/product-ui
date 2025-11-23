@@ -9,7 +9,7 @@ export default function Products() {
     const fetchProducts = async () => {
         console.log('data ini');
         const res = await api.get("/product");
-        setProducts(res.data.data); // sesuaikan format API
+        setProducts(res.data.data);
         console.log(products);
 
     };
@@ -25,34 +25,42 @@ export default function Products() {
     }, []);
 
     return (
-        <div style={{ padding: 20 }}>
-            <h2>Product List</h2>
-            <Link to="/products/create">+ Add Product</Link>
-            <table border={1} width="70%" style={{ marginTop: 20 }}>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>SKU</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {products.map((p) => (
-                        <tr key={p.id}>
-                            <td>{p.name}</td>
-                            <td>{p.sku}</td>
-                            <td>{p.quantity}</td>
-                            <td>Rp {p.price.toLocaleString()}</td>
-                            <td>
-                                <Link to={`/products/edit/${p.id}`}>Edit</Link> |{" "}
-                                <button onClick={() => deleteProduct(p.id!)}>Hapus</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+        <div className="section-body">
+            <div className="card">
+                <div className="card-body px-0">
+                    <div style={{ padding: 20 }}>
+                        <h2>Product List</h2>
+                        <Link className="btn btn-success mb-2" to="/products/create">+ Add Product</Link>
+                        <div className="table-responsive">
+                            <table width="100%" >
+                                <thead className="tw-sticky tw-top-0">
+                                    <tr className="tw-text-gray-700">
+                                        <th>Name</th>
+                                        <th>SKU</th>
+                                        <th>Qty</th>
+                                        <th>Price</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {products.map((p) => (
+                                        <tr key={p.id}>
+                                            <td>{p.name}</td>
+                                            <td>{p.sku}</td>
+                                            <td>{p.quantity}</td>
+                                            <td>Rp {p.price.toLocaleString()}</td>
+                                            <td>
+                                                <Link className="btn btn-warning mr-2" to={`/products/edit/${p.id}`}><i className="fas fa-edit"></i></Link> {" "}
+                                                <button className="btn btn-danger" onClick={() => deleteProduct(p.id!)}><i className="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

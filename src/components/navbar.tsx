@@ -32,24 +32,6 @@ export default function Navbar() {
                         <div className="dropdown-title">
                             Logged in 5 min ago
                         </div>
-                        <a
-                            href="features-profile.html"
-                            className="dropdown-item has-icon"
-                        >
-                            <i className="far fa-user"></i> Profile
-                        </a>
-                        <a
-                            href="features-activities.html"
-                            className="dropdown-item has-icon"
-                        >
-                            <i className="fas fa-bolt"></i> Activities
-                        </a>
-                        <a
-                            href="features-settings.html"
-                            className="dropdown-item has-icon"
-                        >
-                            <i className="fas fa-cog"></i> Settings
-                        </a>
                         <div className="dropdown-divider"></div>
                         <a
                             href="#"

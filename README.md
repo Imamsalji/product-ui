@@ -2,6 +2,8 @@
 
 Panduan ini akan membantu Anda untuk meng-clone proyek React dari GitHub dan menginstal semua dependensi yang diperlukan.
 
+template source : https://github.com/fhmiibrhimdev/react-vite-stisla
+
 ## Cara instalasi dan menjalankan Proyek
 
 1. Clone repository menggunakan cmd/terminal
